@@ -7,11 +7,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private int lives;
+    
     private Rigidbody2D _rb;
-
+    private GameManager _gameManager;
+    
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
     
     private void FixedUpdate()
@@ -26,5 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.CompareTag("Ball"))
             lives--;
+
+        if (lives == 0)
+            _gameManager.PlayerDied();
     }
 }
