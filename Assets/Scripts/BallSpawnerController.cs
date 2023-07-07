@@ -12,7 +12,7 @@ public class BallSpawnerController : MonoBehaviour
     private float _cooldownTimer;
     private Camera _camera;
 
-    private const float SPAWN_RADIUS = 10;
+    private const float SPAWN_RADIUS = 15;
     
     private void Start()
     {

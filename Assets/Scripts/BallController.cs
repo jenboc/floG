@@ -1,13 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class BallController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private int scoreForDodging;
+    [SerializeField] private AudioClip[] swingSounds;
+    [SerializeField] private AudioClip holeSound;
 
     private Rigidbody2D _rb;
     private GameManager _gameManager;
@@ -23,6 +23,8 @@ public class BallController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         _hitPlayer = false;
+        
+        _gameManager.PlaySound(swingSounds[Random.Range(0, swingSounds.Length)]);
     }
 
     private void FixedUpdate()
@@ -41,6 +43,7 @@ public class BallController : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+            _gameManager.PlaySound(holeSound);
             Destroy(gameObject);
             _hitPlayer = true;
         }

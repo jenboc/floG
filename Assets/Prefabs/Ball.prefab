@@ -137,11 +137,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   scoreForDodging: 5
-  swingAudios:
+  swingSounds:
   - {fileID: 8300000, guid: 24926b2398838804483b9df9c44dd050, type: 3}
   - {fileID: 8300000, guid: 885f998ac52980d4e8bc31ba2a9d0654, type: 3}
   - {fileID: 8300000, guid: 6fc343e96e511d1479753375e263e3ab, type: 3}
-  holeAudio: {fileID: 8300000, guid: 987bc642c40ecfd4ea36a0c17c1328b7, type: 3}
+  holeSound: {fileID: 8300000, guid: 987bc642c40ecfd4ea36a0c17c1328b7, type: 3}
 --- !u!50 &5915676287208643338
 Rigidbody2D:
   serializedVersion: 4

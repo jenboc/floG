@@ -11,13 +11,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject overlayPanel;
     [SerializeField] private GameObject gameOverPanel;
 
+    private AudioSource _audioSource;
     private int _score;
 
     private void Start()
     {
         _score = 0;
         UpdateScoreText(scoreTextOverlay);
-        ShowOverlay(); 
+        ShowOverlay();
+
+        _audioSource = GetComponent<AudioSource>();
     }
     
     public void UpdateScore(int dScore)
@@ -52,4 +55,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void PlaySound(AudioClip clip) => _audioSource.PlayOneShot(clip);
 }
