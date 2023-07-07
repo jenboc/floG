@@ -18,6 +18,7 @@ public class BallController : MonoBehaviour
     {
         var playerObject = GameObject.FindWithTag("Player");
         _moveDirection = playerObject.transform.position - transform.position;
+        _moveDirection.Normalize();
         _rb = GetComponent<Rigidbody2D>();
         _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         _hitPlayer = false;
