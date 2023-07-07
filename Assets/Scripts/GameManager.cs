@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour
 
     private AudioSource _audioSource;
     private int _score;
+    
+    public bool GameActive { get; private set; }
 
     private void Start()
     {
+        GameActive = true;
         _score = 0;
         UpdateScoreText(scoreTextOverlay);
         ShowOverlay();
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowGameOverMenu()
     {
+        GameActive = false;
         overlayPanel.SetActive(false);
         UpdateScoreText(scoreTextGameOver);
         gameOverPanel.SetActive(true);

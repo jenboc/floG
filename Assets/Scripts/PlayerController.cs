@@ -40,6 +40,12 @@ public class PlayerController : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if (!_gameManager.GameActive)
+        {
+            _rb.velocity = Vector2.zero;
+            return;
+        }
+
         var moveDirection = ProcessInputs() * speed;
         _rb.velocity = moveDirection;
     }

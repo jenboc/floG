@@ -29,6 +29,12 @@ public class BallController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_gameManager.GameActive)
+        {
+            _rb.velocity = Vector2.zero;
+            return;
+        }
+
         var translation = _moveDirection * (speed);
         _rb.velocity = translation;
     }
