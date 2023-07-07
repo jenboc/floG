@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  scoreForDodging: 5
 --- !u!50 &5915676287208643338
 Rigidbody2D:
   serializedVersion: 4

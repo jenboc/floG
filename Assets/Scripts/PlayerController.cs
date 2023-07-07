@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        lives--;
-        Debug.Log(lives);
+        if (collider.CompareTag("Ball"))
+            lives--;
     }
 }
