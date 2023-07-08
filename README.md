@@ -6,6 +6,7 @@ This is my submission for the 2023 GMTK Game Jam, the theme was: "Roles Reversed
 - Grass: Me
 - Hole: Me
 - Ball: Me
+- Heart: https://game-icons.net/1x1/skoll/hearts.html ([CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)) - made heart red + removed black background
 
 ## Audio
 - Golf Ball spawn sound: https://freesound.org/people/CGEffex/sounds/98334/ ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))

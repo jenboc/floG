@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
         _playerSize = GetComponent<SpriteRenderer>().bounds.size;
         _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         _camera = Camera.main;
+
+        _gameManager.UpdateLives(lives);
     }
 
     private void Update()
@@ -55,7 +57,10 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Ball"))
+        {
             lives--;
+            _gameManager.UpdateLives(lives);
+        }
 
         if (lives == 0)
             _gameManager.PlayerDied();

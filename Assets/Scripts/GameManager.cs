@@ -12,10 +12,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreTextGameOver;
     [SerializeField] private GameObject overlayPanel;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private Sprite lifeSprite;
 
     private AudioSource _audioSource;
     private int _score;
-    
+
+    private const float LIFE_Y_POS = -65f;
+    private const float LIFE_X_PADDING = -57f;
+    private const float LIFE_RIGHT_BORDER_PADDING = -114f;
+
     public bool GameActive { get; private set; }
 
     private void Start()
@@ -63,4 +68,51 @@ public class GameManager : MonoBehaviour
     }
 
     public void PlaySound(AudioClip clip) => _audioSource.PlayOneShot(clip);
+
+    public void UpdateLives(int numLives)
+    {
+        var livesShowing = overlayPanel.transform.childCount - 1; // One child is score text
+
+        if (livesShowing == numLives)
+            return;
+
+        if (livesShowing < numLives)
+            AddLives(livesShowing, numLives - livesShowing);
+        else
+            RemoveLives(livesShowing - numLives);
+    }
+
+    private void AddLives(int numShowing, int toAdd)
+    {
+        for (var i = 0; i < toAdd; i++)
+        {
+            var imageObject = new GameObject($"Life {i}");
+            var rectTransform = imageObject.AddComponent<RectTransform>();
+            var image = imageObject.AddComponent<Image>();
+            imageObject.transform.SetParent(overlayPanel.transform);
+
+            rectTransform.anchorMin = new Vector2(1, 1);
+            rectTransform.anchorMax = new Vector2(1, 1);
+            rectTransform.pivot = new Vector2(0.5f, 0.5f);
+            
+            image.sprite = lifeSprite;
+            var width = rectTransform.rect.width;
+            Debug.Log(width);
+            rectTransform.anchoredPosition = new Vector2(
+                -numShowing * (width - LIFE_X_PADDING) + LIFE_RIGHT_BORDER_PADDING,
+                LIFE_Y_POS);
+            
+            numShowing++;
+        }
+    }
+
+    private void RemoveLives(int toRemove)
+    {
+        var totalChildren = overlayPanel.transform.childCount;
+        for (var childIndex = 1; childIndex <= toRemove; childIndex++)
+        {
+            var child = overlayPanel.transform.GetChild(totalChildren - childIndex).gameObject;
+            Destroy(child);
+        }
+    }
 }
