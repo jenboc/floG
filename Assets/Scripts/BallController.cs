@@ -4,42 +4,46 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    [SerializeField] private float initialForce;
+    [SerializeField] protected float initialForce;
     [SerializeField] private int scoreForDodging;
     [SerializeField] private AudioClip[] swingSounds;
     [SerializeField] private AudioClip holeSound;
 
-    private Rigidbody2D _rb;
+    protected Rigidbody2D _rb;
     private GameManager _gameManager;
     
-    private Vector2 _moveDirection;
+    protected Vector2 _moveDirection;
     private bool _hitPlayer;
-    
-    private void Start()
+
+    private Transform _player;
+
+    private void Awake()
     {
+        _player = GameObject.FindWithTag("Player").transform;
         _rb = GetComponent<Rigidbody2D>();
         _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         _hitPlayer = false;
-
-        _moveDirection = CalculateMoveDirection();
-        
+    }
+    
+    private void Start()
+    {
         _gameManager.PlaySound(swingSounds[Random.Range(0, swingSounds.Length)]);
-
-        ApplyInitialForce(); 
+        CalculateMoveDirection();
+        ApplyInitialForce();
     }
 
-    private void ApplyInitialForce() => _rb.AddForce(_moveDirection * initialForce);
+    protected void ApplyInitialForce(ForceMode2D mode = ForceMode2D.Impulse) 
+        => _rb.AddForce(_moveDirection * initialForce, mode);
     
-    private Vector2 CalculateMoveDirection() => 
-        (GameObject.FindWithTag("Player").transform.position - transform.position).normalized;
+    protected void CalculateMoveDirection() => 
+        _moveDirection = (_player.position - transform.position).normalized;
 
     
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!_gameManager.GameActive)
         {
             _rb.velocity = Vector2.zero;
-            return;
         }
     }
 
