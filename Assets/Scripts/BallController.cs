@@ -12,20 +12,26 @@ public class BallController : MonoBehaviour
     private Rigidbody2D _rb;
     private GameManager _gameManager;
     
-    private Vector3 _moveDirection;
+    private Vector2 _moveDirection;
     private bool _hitPlayer;
     
     private void Start()
     {
-        var playerObject = GameObject.FindWithTag("Player");
-        _moveDirection = playerObject.transform.position - transform.position;
-        _moveDirection.Normalize();
         _rb = GetComponent<Rigidbody2D>();
         _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         _hitPlayer = false;
+
+        _moveDirection = CalculateMoveDirection();
         
         _gameManager.PlaySound(swingSounds[Random.Range(0, swingSounds.Length)]);
+
+        ApplyInitialForce(); 
     }
+
+    private void ApplyInitialForce() => _rb.AddForce(_moveDirection * speed);
+    
+    private Vector2 CalculateMoveDirection() => 
+        (GameObject.FindWithTag("Player").transform.position - transform.position).normalized;
 
     private void FixedUpdate()
     {
@@ -34,9 +40,10 @@ public class BallController : MonoBehaviour
             _rb.velocity = Vector2.zero;
             return;
         }
-
-        var translation = _moveDirection * (speed);
-        _rb.velocity = translation;
+    
+        // Old movement: constant velocity
+        // var translation = _moveDirection * (speed);
+        // _rb.velocity = translation;
     }
 
     private void OnBecameInvisible()
