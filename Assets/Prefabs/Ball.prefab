@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71acf49c7d7751747b73fdf9c4f681d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialForce: 25
+  initialForce: 500
   scoreForDodging: 5
   swingSounds:
   - {fileID: 8300000, guid: 24926b2398838804483b9df9c44dd050, type: 3}

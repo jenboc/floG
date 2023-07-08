@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     private const float LIFE_Y_POS = -65f;
     private const float LIFE_X_PADDING = -57f;
     private const float LIFE_RIGHT_BORDER_PADDING = -114f;
-
+    private const float HEART_SCALE = 0.5f;
+    
     public bool GameActive { get; private set; }
 
     private void Start()
@@ -94,13 +95,14 @@ public class GameManager : MonoBehaviour
             rectTransform.anchorMin = new Vector2(1, 1);
             rectTransform.anchorMax = new Vector2(1, 1);
             rectTransform.pivot = new Vector2(0.5f, 0.5f);
+            rectTransform.localScale = new Vector3(HEART_SCALE, HEART_SCALE, 1f);
             
             image.sprite = lifeSprite;
             var width = rectTransform.rect.width;
             Debug.Log(width);
             rectTransform.anchoredPosition = new Vector2(
                 -numShowing * (width - LIFE_X_PADDING) + LIFE_RIGHT_BORDER_PADDING,
-                LIFE_Y_POS);
+                LIFE_Y_POS) * HEART_SCALE;
             
             numShowing++;
         }

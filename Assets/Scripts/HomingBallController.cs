@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class HomingBallController : BallController
+﻿public class HomingBallController : BallController
 {
     private void Update()
     {

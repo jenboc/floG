@@ -32,7 +32,7 @@ public class BallController : MonoBehaviour
         ApplyInitialForce();
     }
 
-    protected void ApplyInitialForce(ForceMode2D mode = ForceMode2D.Impulse) 
+    protected void ApplyInitialForce(ForceMode2D mode = ForceMode2D.Force) 
         => _rb.AddForce(_moveDirection * initialForce, mode);
     
     protected void CalculateMoveDirection() => 
