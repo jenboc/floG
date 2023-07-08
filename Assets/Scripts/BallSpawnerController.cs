@@ -11,6 +11,7 @@ public class BallSpawnerController : MonoBehaviour
 
     private float _cooldownTimer;
     private Camera _camera;
+    private GameManager _gameManager;
 
     private const float SPAWN_RADIUS = 15;
     
@@ -18,10 +19,14 @@ public class BallSpawnerController : MonoBehaviour
     {
         _cooldownTimer = 0f;
         _camera = Camera.main;
+        _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
     
     private void Update()
     {
+        if (!_gameManager.GameActive)
+            return;
+        
         _cooldownTimer += Time.deltaTime;
         
         if (_cooldownTimer >= spawnCooldown)
