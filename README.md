@@ -1,6 +1,6 @@
 # gmtk-2d (Golf Game)
 
-This is my submission for the 2023 GMTK Game Jam, the theme was: "Roles Reversed".
+This is my submission for the 2023 GMTK Game Jam, the theme was: "Roles Reversed". This was done completely solo, so it is all my own work, apart from some of the art, sounds and fonts (see below).
 
 ## Art 
 - Grass: Me
