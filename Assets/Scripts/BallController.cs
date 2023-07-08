@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float initialForce;
     [SerializeField] private int scoreForDodging;
     [SerializeField] private AudioClip[] swingSounds;
     [SerializeField] private AudioClip holeSound;
@@ -28,11 +28,12 @@ public class BallController : MonoBehaviour
         ApplyInitialForce(); 
     }
 
-    private void ApplyInitialForce() => _rb.AddForce(_moveDirection * speed);
+    private void ApplyInitialForce() => _rb.AddForce(_moveDirection * initialForce);
     
     private Vector2 CalculateMoveDirection() => 
         (GameObject.FindWithTag("Player").transform.position - transform.position).normalized;
 
+    
     private void FixedUpdate()
     {
         if (!_gameManager.GameActive)
@@ -40,10 +41,6 @@ public class BallController : MonoBehaviour
             _rb.velocity = Vector2.zero;
             return;
         }
-    
-        // Old movement: constant velocity
-        // var translation = _moveDirection * (speed);
-        // _rb.velocity = translation;
     }
 
     private void OnBecameInvisible()
