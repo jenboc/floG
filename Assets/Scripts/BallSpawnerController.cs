@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BallSpawnerController : MonoBehaviour
 {
-    [SerializeField] private GameObject _ball;
+    [SerializeField] private GameObject standardBall;
+    [SerializeField] private GameObject[] specialBalls;
     [SerializeField] private float spawnCooldown;
     [SerializeField] private float minSpawnCooldown;
     [SerializeField] private float spawnCooldownDelta;
@@ -14,6 +16,8 @@ public class BallSpawnerController : MonoBehaviour
     private GameManager _gameManager;
 
     private const float SPAWN_RADIUS = 15;
+    private const int MIN_SPAWN = 1;
+    private const int MAX_SPAWN = 3;
     
     private void Start()
     {
@@ -31,7 +35,7 @@ public class BallSpawnerController : MonoBehaviour
         
         if (_cooldownTimer >= spawnCooldown)
         {
-            SpawnBall();
+            SpawnBalls();
             ReduceCooldown();
             _cooldownTimer = 0f;
         }
@@ -48,11 +52,31 @@ public class BallSpawnerController : MonoBehaviour
         }
     }
 
-    private void SpawnBall()
+    private void SpawnBalls()
+    {
+        var num = Random.Range(MIN_SPAWN, MAX_SPAWN + 1);
+
+        for (var i = 0; i < num; i++)
+        {
+            var typeIndicator = Random.value;
+
+            if (typeIndicator <= 0.1)
+            {
+                SpawnSpecialBall();
+                continue;
+            }
+            
+            SpawnBall(standardBall);
+        }
+    }
+
+    private void SpawnSpecialBall() => SpawnBall(specialBalls[Random.Range(0, specialBalls.Length)]);
+    
+    private void SpawnBall(GameObject ballType)
     {
         var spawnPos = GetSpawnPosition();
         spawnPos.z = 0; // Ensure the ball is visible on screen
-        Instantiate(_ball, spawnPos, Quaternion.identity);
+        Instantiate(ballType, spawnPos, Quaternion.identity);
     }
 
     private Vector3 GetSpawnPosition()
