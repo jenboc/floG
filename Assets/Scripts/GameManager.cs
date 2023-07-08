@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Text scoreTextOverlay;
-    [SerializeField] private Text scoreTextGameOver;
+    
+    [SerializeField] private TMP_Text scoreTextOverlay;
+    [SerializeField] private TMP_Text scoreTextGameOver;
     [SerializeField] private GameObject overlayPanel;
     [SerializeField] private GameObject gameOverPanel;
 
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
         UpdateScoreText(scoreTextOverlay);
     }
     
-    private void UpdateScoreText(Text textBox) => textBox.text = $"Score: {_score}";
+    private void UpdateScoreText(TMP_Text textBox) => textBox.text = $"Score: {_score}";
 
     private void ShowOverlay()
     {
