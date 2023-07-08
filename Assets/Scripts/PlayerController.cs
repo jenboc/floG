@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int ammo; 
     [SerializeField] private TurretController turretController;
     [SerializeField] private AudioClip turretFireAudio;
+    [SerializeField] private AudioClip ammoPickupAudio;
+    [SerializeField] private int ammoOnPickup;
     
     private Rigidbody2D _rb;
     private Vector3 _playerSize;
@@ -79,14 +81,22 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 ProcessInputs() => new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collider.CompareTag("Ball"))
+        switch (other.tag)
         {
-            lives--;
-            _gameManager.UpdateLives(lives);
+            case "Ball":
+                lives--;
+                _gameManager.UpdateLives(lives);
+                break;
+            case "Ammo":
+                ammo += ammoOnPickup;
+                Destroy(other.gameObject);
+                _audioSource.PlayOneShot(ammoPickupAudio);
+                _gameManager.UpdateAmmo(ammo);
+                break;
         }
-
+        
         if (lives == 0)
             _gameManager.PlayerDied();
     }

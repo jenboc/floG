@@ -12,5 +12,6 @@ This is my submission for the 2023 GMTK Game Jam, the theme was: "Roles Reversed
 - Golf Ball spawn sound: https://freesound.org/people/CGEffex/sounds/98334/ ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))
 - Golf in hole sound: https://freesound.org/people/pfranzen/sounds/512505/ ([CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/))
 - Turret fire sound: https://freesound.org/people/Jarusca/sounds/521377/ ([CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/))
+- Turret reload sound: https://freesound.org/people/Dacmod1/sounds/688866/ ([CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/))
 
 ## Fonts
