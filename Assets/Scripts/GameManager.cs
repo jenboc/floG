@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private TMP_Text scoreTextOverlay;
     [SerializeField] private TMP_Text scoreTextGameOver;
+    [SerializeField] private TMP_Text ammoText;
     [SerializeField] private GameObject overlayPanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private Sprite lifeSprite;
@@ -38,6 +39,11 @@ public class GameManager : MonoBehaviour
     {
         _score += dScore;
         UpdateScoreText(scoreTextOverlay);
+    }
+
+    public void UpdateAmmo(int newAmmo)
+    {
+        ammoText.text = $"Ammo: {newAmmo}";
     }
     
     private void UpdateScoreText(TMP_Text textBox) => textBox.text = $"Score: {_score}";

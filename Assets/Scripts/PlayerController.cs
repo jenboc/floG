@@ -7,11 +7,17 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private int lives;
+    [SerializeField] private float fireSpeed;
+    [SerializeField] private int ammo; 
+    [SerializeField] private TurretController turretController;
+    [SerializeField] private AudioClip turretFireAudio;
     
     private Rigidbody2D _rb;
     private Vector3 _playerSize;
     private GameManager _gameManager;
-    private Camera _camera; 
+    private Camera _camera;
+    private float _fireTimer;
+    private AudioSource _audioSource;
     
     private void Start()
     {
@@ -19,13 +25,32 @@ public class PlayerController : MonoBehaviour
         _playerSize = GetComponent<SpriteRenderer>().bounds.size;
         _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
         _camera = Camera.main;
+        _audioSource = GetComponent<AudioSource>();
 
+        _fireTimer = fireSpeed;
+        
         _gameManager.UpdateLives(lives);
+        _gameManager.UpdateAmmo(ammo);
     }
 
     private void Update()
     {
         CheckInBounds();
+        CheckShoot(); 
+    }
+
+    private void CheckShoot()
+    {
+        _fireTimer += Time.deltaTime;
+
+        if (_fireTimer < fireSpeed || !Input.GetMouseButton(0) || ammo <= 0)
+            return;
+        
+        _audioSource.PlayOneShot(turretFireAudio);
+        turretController.Fire();
+        ammo--;
+        _fireTimer = 0;
+        _gameManager.UpdateAmmo(ammo);
     }
 
     private void CheckInBounds()

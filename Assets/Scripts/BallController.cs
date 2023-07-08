@@ -62,4 +62,6 @@ public class BallController : MonoBehaviour
             _hitPlayer = true;
         }
     }
+
+    public void Shoot() => Destroy(gameObject);
 }
