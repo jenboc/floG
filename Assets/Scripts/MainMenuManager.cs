@@ -13,6 +13,8 @@ public class MainMenuManager : MonoBehaviour
     private void Start() 
     {
         _audioSource = GetComponent<AudioSource>();
+        mainPanel.SetActive(true);
+        helpPanel.SetActive(false);
     }
 
     public void PlayButtonPressed()
