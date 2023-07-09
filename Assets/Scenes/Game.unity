@@ -1058,7 +1058,7 @@ MonoBehaviour:
   maxLives: 5
   lives: 3
   livesOnPickup: 1
-  healAudio: {fileID: 0}
+  healAudio: {fileID: 8300000, guid: 655a2221306c97c428e35121700d7316, type: 3}
   fireSpeed: 1
   ammo: 5
   turretController: {fileID: 1162856143}
