@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     private AudioSource _musicAudioSource; 
     private int _score;
 
-    private const float LIFE_Y_POS = -65f;
-    private const float LIFE_X_PADDING = -57f;
+    private const float LIFE_Y_POS = -80f;
+    private const float LIFE_X_PADDING = -45f;
     private const float LIFE_RIGHT_BORDER_PADDING = -114f;
     private const float HEART_SCALE = 0.5f;
     
@@ -147,7 +147,6 @@ public class GameManager : MonoBehaviour
             
             image.sprite = lifeSprite;
             var width = rectTransform.rect.width;
-            Debug.Log(width);
             rectTransform.anchoredPosition = new Vector2(
                 -numShowing * (width - LIFE_X_PADDING) + LIFE_RIGHT_BORDER_PADDING,
                 LIFE_Y_POS) * HEART_SCALE;
