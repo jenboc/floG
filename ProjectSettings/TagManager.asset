@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ball
-  - Powerup
   - Missile
+  - Ammo
+  - Medkit
   layers:
   - Default
   - TransparentFX
