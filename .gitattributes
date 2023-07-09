@@ -2,4 +2,4 @@
 * text=auto
 
 #Linguist overriding
-Assets/TextMeshPro/* linguist-documentation
+Assets/TextMeshPro/* linguist-vendored
