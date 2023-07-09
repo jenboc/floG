@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class AmmoSpawnerController : MonoBehaviour
 {
-    [SerializeField] private GameObject ammoCrate;
+    [SerializeField] private GameObject[] collectablePrefabs;
     [SerializeField] private float minSpawnCooldown;
     [SerializeField] private float maxSpawnCooldown;
 
     private float _spawnCooldown;
     private float _cooldownTimer;
     private Camera _camera;
-    private Vector2 _crateSize;
+    private Vector2[] _prefabSizes;
 
+    private void Awake()
+    {
+        _prefabSizes = new Vector2[collectablePrefabs.Length];
+        for (var i = 0; i < collectablePrefabs.Length; i++)
+            _prefabSizes[i] = collectablePrefabs[i].GetComponent<SpriteRenderer>().size;
+    }
+    
     private void Start()
     {
         _camera = Camera.main;
         NewSpawnCooldown();
         _cooldownTimer = _spawnCooldown;
-
-        _crateSize = ammoCrate.GetComponent<SpriteRenderer>().size;
     }
 
     private void NewSpawnCooldown() => _spawnCooldown = Random.Range(minSpawnCooldown, maxSpawnCooldown);
@@ -36,14 +41,18 @@ public class AmmoSpawnerController : MonoBehaviour
         _cooldownTimer = 0f;
     }
 
-    private void SpawnCrate() => Instantiate(ammoCrate, NewSpawnPosition(), Quaternion.identity);
-
-    private Vector3 NewSpawnPosition()
+    private void SpawnCrate()
     {
-        var topLeft = (Vector2)_camera.ScreenToWorldPoint(new Vector3(0, 0, 0)) + (_crateSize / 2);
+        var prefabIndex = Random.Range(0, collectablePrefabs.Length);
+        Instantiate(collectablePrefabs[prefabIndex], NewSpawnPosition(_prefabSizes[prefabIndex]), Quaternion.identity);  
+    } 
+
+    private Vector3 NewSpawnPosition(Vector2 prefabSize)
+    {
+        var topLeft = (Vector2)_camera.ScreenToWorldPoint(new Vector3(0, 0, 0)) + (prefabSize / 2);
         var bottomRight = 
             (Vector2)_camera.ScreenToWorldPoint(new Vector3(_camera.pixelWidth, _camera.pixelHeight, 0)) -
-                          (_crateSize / 2);
+                          (prefabSize / 2);
 
         return new Vector3(
             Random.Range(topLeft.x, bottomRight.x),

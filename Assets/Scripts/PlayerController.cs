@@ -6,7 +6,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private int maxLives;
     [SerializeField] private int lives;
+    [SerializeField] private int livesOnPickup;
+    [SerializeField] private AudioClip healAudio;
     [SerializeField] private float fireSpeed;
     [SerializeField] private int ammo; 
     [SerializeField] private TurretController turretController;
@@ -94,6 +97,13 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
                 _audioSource.PlayOneShot(ammoPickupAudio);
                 _gameManager.UpdateAmmo(ammo);
+                break;
+            case "Medkit":
+                lives += livesOnPickup;
+                lives = Mathf.Clamp(lives, 0, maxLives);
+                Destroy(other.gameObject);
+                _audioSource.PlayOneShot(healAudio);
+                _gameManager.UpdateLives(lives);
                 break;
         }
         
