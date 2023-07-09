@@ -15,7 +15,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private Sprite lifeSprite;
 
-    private AudioSource _audioSource;
+    [SerializeField] private AudioClip[] gameMusic;
+    [SerializeField] private AudioClip gameOverSound;
+    [SerializeField] private AudioClip buttonClickSound;
+    
+    private AudioSource _sfxAudioSource;
+    private AudioSource _musicAudioSource; 
     private int _score;
 
     private const float LIFE_Y_POS = -65f;
@@ -25,14 +30,33 @@ public class GameManager : MonoBehaviour
     
     public bool GameActive { get; private set; }
 
+    private void Awake()
+    {
+        var audioSources = GetComponents<AudioSource>();
+        _sfxAudioSource = audioSources[0];
+        _musicAudioSource = audioSources[1];
+
+        _musicAudioSource.volume = 0.5f;
+    }
+    
     private void Start()
     {
         GameActive = true;
         _score = 0;
         UpdateScoreText(scoreTextOverlay);
         ShowOverlay();
+    }
 
-        _audioSource = GetComponent<AudioSource>();
+    private void Update()
+    {
+        if (GameActive && !_musicAudioSource.isPlaying)
+            StartGameMusic();
+    }
+    
+    private void StartGameMusic()
+    {
+        var music = gameMusic[Random.Range(0, gameMusic.Length)];
+        _musicAudioSource.PlayOneShot(music);
     }
     
     public void UpdateScore(int dScore)
@@ -56,25 +80,36 @@ public class GameManager : MonoBehaviour
 
     private void ShowGameOverMenu()
     {
+        PlayGameOverSound(); 
         GameActive = false;
         overlayPanel.SetActive(false);
         UpdateScoreText(scoreTextGameOver);
         gameOverPanel.SetActive(true);
     }
 
+    private void PlayGameOverSound()
+    {
+        _musicAudioSource.Stop();
+        _musicAudioSource.PlayOneShot(gameOverSound);
+    }
+
     public void PlayerDied() => ShowGameOverMenu();
 
+    private void PlayClickSound() => _sfxAudioSource.PlayOneShot(buttonClickSound);
+    
     public void ShowMainMenu()
     {
+        PlayClickSound();
         SceneManager.LoadScene("Scenes/MainMenu");
     }
 
     public void ReloadScene()
     {
+        PlayClickSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void PlaySound(AudioClip clip) => _audioSource.PlayOneShot(clip);
+    public void PlaySound(AudioClip clip) => _sfxAudioSource.PlayOneShot(clip);
 
     public void UpdateLives(int numLives)
     {
