@@ -1,6 +1,10 @@
-# floG
+![Cover Art](flogCoverArt.png)
 
 This is my submission for the 2023 GMTK Game Jam, the theme was: "Roles Reversed". This was done completely solo, so it is all my own work, apart from some of the art, sounds and fonts (see below).
+
+I decided to take on the theme with a golf game. In this game, you play as the golf hole trying to avoid golf balls that are trying to roll into you. 
+
+This is my first full project using Unity, and I learnt a ton (above all that I'm definitely not an artist) even if I am slightly disappointed with the result. 
 
 ## Art 
 All art was done by myself apart from: 
@@ -25,3 +29,5 @@ All music appears in the main game loop of the game and was retrieved from the [
 
 ## Fonts
 Default Unity Font (Liberation Sans)
+
+[itch.io Page](https://jenboc.itch.io/flog)
