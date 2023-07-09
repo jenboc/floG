@@ -1,10 +1,11 @@
-# gmtk-2d (Golf Game)
+# floG
 
 This is my submission for the 2023 GMTK Game Jam, the theme was: "Roles Reversed". This was done completely solo, so it is all my own work, apart from some of the art, sounds and fonts (see below).
 
 ## Art 
 All art was done by myself apart from: 
 - Heart: https://game-icons.net/1x1/skoll/hearts.html ([CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)) - made heart red + removed black background
+- Game Icon: https://game-icons.net/1x1/delapouite/golf-flag.html ([CC BY 3.0](https://creativecommons.org/licenses/by/3.0/))
 
 ## Audio
 - Golf Ball spawn sound: https://freesound.org/people/CGEffex/sounds/98334/ ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/))
@@ -23,3 +24,4 @@ All music appears in the main game loop of the game and was retrieved from the [
 - creamy tomato - human gazpacho - https://freemusicarchive.org/music/human-gazpacho/single/creamy-tomato/ ([CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/))
 
 ## Fonts
+Default Unity Font (Liberation Sans)
