@@ -2,4 +2,5 @@
 * text=auto
 
 #Linguist overriding
-Assets/TextMeshPro/* linguist-vendored
+*.cginc linguist-vendored
+*.shader linguist-vendored
