@@ -63,5 +63,9 @@ public class BallController : MonoBehaviour
         }
     }
 
-    public void Shoot() => Destroy(gameObject);
+    public void Shoot()
+    {
+        _gameManager.PlayExplosionParticles(transform.position);
+        Destroy(gameObject);
+    }
 }

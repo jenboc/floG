@@ -1246,6 +1246,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9157cda2fbba56446aa2364006125a48, type: 3}
   gameOverSound: {fileID: 8300000, guid: e4a39e7020f90da458c3d0f01e2690f3, type: 3}
   buttonClickSound: {fileID: 8300000, guid: 16c27a300db44724e94fa11cbb2f5b1d, type: 3}
+  explosionParticles: {fileID: 9069150583568124022, guid: 72e598060d048204692a6d7c8ac4b765, type: 3}
 --- !u!4 &834156819
 Transform:
   m_ObjectHideFlags: 0

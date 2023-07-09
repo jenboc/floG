@@ -17,11 +17,12 @@ public class BallSpawnerController : MonoBehaviour
 
     private const float SPAWN_RADIUS = 15;
     private const int MIN_SPAWN = 1;
-    private const int MAX_SPAWN = 3;
+    private const int MAX_SPAWN = 4;
+    private const float SPECIAL_SPAWN_CHANCE = 0.05f;
     
     private void Start()
     {
-        _cooldownTimer = 0f;
+        _cooldownTimer = spawnCooldown - 1f;
         _camera = Camera.main;
         _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
     }
@@ -60,7 +61,7 @@ public class BallSpawnerController : MonoBehaviour
         {
             var typeIndicator = Random.value;
 
-            if (typeIndicator <= 0.1)
+            if (typeIndicator <= SPECIAL_SPAWN_CHANCE)
             {
                 SpawnSpecialBall();
                 continue;

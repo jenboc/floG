@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip[] gameMusic;
     [SerializeField] private AudioClip gameOverSound;
     [SerializeField] private AudioClip buttonClickSound;
+
+    [SerializeField] private GameObject explosionParticles;
     
     private AudioSource _sfxAudioSource;
     private AudioSource _musicAudioSource; 
@@ -124,6 +126,11 @@ public class GameManager : MonoBehaviour
             RemoveLives(livesShowing - numLives);
     }
 
+    public void PlayExplosionParticles(Vector3 location)
+    {
+        Instantiate(explosionParticles, location, Quaternion.identity);
+    }
+    
     private void AddLives(int numShowing, int toAdd)
     {
         for (var i = 0; i < toAdd; i++)
