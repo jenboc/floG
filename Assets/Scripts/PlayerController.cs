@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!_gameManager.GameActive)
+            return;
+        
         CheckInBounds();
         CheckShoot(); 
     }
