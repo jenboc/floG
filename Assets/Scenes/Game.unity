@@ -1852,7 +1852,7 @@ MonoBehaviour:
   standardBall: {fileID: 5138500382451200751, guid: 7fff0862a29994d46bad8cd7c6bb40b1, type: 3}
   specialBalls:
   - {fileID: 8445798738505677018, guid: 9b1c4a6f93fd7334eb01395cef1e68e9, type: 3}
-  spawnCooldown: 5
+  spawnCooldown: 8
   minSpawnCooldown: 1
   spawnCooldownDelta: 0.5
 --- !u!4 &983051729

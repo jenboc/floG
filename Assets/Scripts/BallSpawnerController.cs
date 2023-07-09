@@ -18,7 +18,7 @@ public class BallSpawnerController : MonoBehaviour
     private const float SPAWN_RADIUS = 15;
     private const int MIN_SPAWN = 1;
     private const int MAX_SPAWN = 4;
-    private const float SPECIAL_SPAWN_CHANCE = 0.05f;
+    private const float SPECIAL_SPAWN_CHANCE = 0.1f;
     
     private void Start()
     {
